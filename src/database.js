@@ -25,14 +25,7 @@ exports.database = {
       },
     };
 
-    // https://mongoosejs.com/docs/deprecations.html
-    const mongooseOptions = {
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      useCreateIndex: false,
-      useUnifiedTopology: true,
-    };
-    await retry(() => mongoose.connect(CONNECTION_STRING, mongooseOptions), options)
+    await retry(() => mongoose.connect(CONNECTION_STRING))
       .catch(err => {
         const errorMessage = [
           `[ database::ERROR ] Failed to connect to database. ${connectedOnURI}`,
